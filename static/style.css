@@ -1,0 +1,150 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	background: #FFEB3B;
+}
+
+
+
+nav{
+	width: 100%;
+	height: 20px;
+	padding: 30px;
+	margin-bottom: 40px;
+	background-color: #03A9F4;
+}
+
+table,form{
+	width: 75%;
+	height: auto;
+	text-align: left;
+	margin: auto auto;
+	background: #FFF;
+	padding: 3px;
+	border: 3px solid #F57F17;
+}
+
+
+th ,td{
+	border-left: 3px solid #F57F17;
+	border-right: 3px solid #F57F17;
+	padding: 10px;
+}
+
+li{
+	margin: 5px;
+}
+
+a{
+	text-decoration: none;
+}
+
+td a{
+	text-decoration: none;
+	color: red;
+}
+td a span{
+	text-decoration: none;
+	color: gray;
+	font-style: italic;
+}
+
+label{
+	display: block;
+}
+
+textarea{
+	width: 50%;
+	resize:none;
+}
+
+.center{
+	text-align: center;
+
+}
+
+.de{
+	font-family: 'Henny Penny',cursive;
+}
+
+.text{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.ui{
+	font-family: Nunito, sans-serif;
+}
+
+.heading{
+	font-family: Oswald,sans-serif;
+	font-size: x-large;
+}
+
+#result , nav ul{
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: red;
+}
+
+#result{
+	z-index: 1;
+}
+
+#signoutButton{
+	width: 120px;
+	padding: 9px 0px;
+	color: white;
+	background-color: red;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+#signoutButton:hover{
+	color: red;
+	background-color: white;
+}
+
+
+#title{
+	position: absolute;
+	font-family: Oswald,sans-serif;
+	font-size: xx-large;
+	top:0;
+	left: 12.5%;
+}
+#signinButton , #signoutButton{
+	position: absolute;
+	top: 5px;
+	right: 12.5%;
+}
+#item{
+	width: 80%;
+}
+
+#categories{
+
+}
+
+#add{	
+	margin-top: 20px;
+}
+
+#add div a{
+	display: inline;
+	margin: auto auto;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #9C27B0;
+	color: white;
+}
+
+#add div a:hover{
+	background-color: white;
+	color: #9C27B0;
+}

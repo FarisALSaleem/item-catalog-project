@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+   		<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+		<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+		<!--styleing-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link href="https://fonts.googleapis.com/css?family=Henny+Penny|Nunito:600|Oswald|Source+Sans+Pro" rel="stylesheet">
+		<!--end styleing-->
+		<title>Catalog App</title>
+	</head>
+	<body>
+		<nav>
+		<h1 id="title">Catalog App</h1>
+		<!--Google login-->
+		<div>
+			<a id = "signoutButton" class="center ui" href={{url_for('gdisconnect')}}>disconnect</a>
+		</div>
+		<!--end Google login-->
+		{% with messages = get_flashed_messages() %}
+		 	{% if messages %}
+		 	<ul>
+		 		{% for message in messages %}
+		 	 		<li><strong>{{message}}</strong></li>
+		 		{% endfor %}
+		 	</ul>
+		 	{% endif %}
+		{% endwith %}
+		</nav>
+		<div>
+			<form method="POST">
+				<h1 class="heading">Delete Item</h1>	
+				<p class="text">Are your sure you want to delete {{item.title}}?</p>
+				<input type="submit" value="delete">
+			</form>
+		</div>
+		<div id="add"class="center">
+			<div>
+				<a href={{url_for('showItem',title=item.title,category=item.category.name)}}>back</a>
+			</div>
+		</div>
+	</body>
+</html>

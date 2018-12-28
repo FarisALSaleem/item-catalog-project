@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+   		<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+		<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+		<!--styleing-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link href="https://fonts.googleapis.com/css?family=Henny+Penny|Nunito:600|Oswald|Source+Sans+Pro" rel="stylesheet">
+		<!--end styleing-->
+		<title>Catalog App</title>
+	</head>
+	<body>
+		<nav>
+		<h1 id="title">Catalog App</h1>
+		<!--Google login-->
+		<div>
+			<a id = "signoutButton" class="center ui" href={{url_for('gdisconnect')}}>disconnect</a>
+		</div>
+		<!--end Google login-->
+		{% with messages = get_flashed_messages() %}
+		 	{% if messages %}
+		 	<ul>
+		 		{% for message in messages %}
+		 	 		<li><strong>{{message}}</strong></li>
+		 		{% endfor %}
+		 	</ul>
+		 	{% endif %}
+		{% endwith %}
+		</nav>
+		<div>
+			<form method="POST">
+				<label class="heading">Title:
+					<input type="text" name="title" class="text" value="{{item.title}}">
+				</label>
+				<label class="heading">Description:<br>
+					<textarea name="description" rows="4" cols="1" class="text">{{item.description}}</textarea>
+				</label>
+				<label class="heading">Category:
+					<select name="category" value="{{item.category.name}}">
+						{% for category in categorys %}
+							<option  class="ui" value="{{category.name}}" >{{category.name}}</option>
+						{% endfor %}
+					</select>
+				</label>
+				<input type="submit" value="edit" class="ui">
+			</form>
+		</div>
+		<div id="add"class="center">
+			<div>
+				<a href={{url_for('showItem',title=item.title,category=item.category.name)}}>back</a>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+

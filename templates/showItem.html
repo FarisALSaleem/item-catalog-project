@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+   		<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+		<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+		<!--styleing-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link href="https://fonts.googleapis.com/css?family=Henny+Penny|Nunito:600|Oswald|Source+Sans+Pro" rel="stylesheet">
+		<!--end styleing-->
+		<title>Catalog App</title>
+	</head>
+	<body>
+		<nav>
+		<h1 id="title">Catalog App</h1>
+		<!--Google login-->
+		<div>
+			{% if 'username' not in login_session %}
+	        <div id="signinButton">
+		    	<span class="g-signin"
+		    		data-scope="openid email"
+		    		data-clientid="960424929838-1nhco7mt80emqdfb943cnstdbscnrs3v.apps.googleusercontent.com"
+		    		data-redirecturi="postmessage"
+		    		data-accesstype="offline"
+		    		data-cookiepolicy="single_host_origin"
+		    		data-callback="signInCallback"
+		    		data-approvalprompt="force">
+		    	</span>
+		    </div>
+			<div id="result"></div>	 
+			<script>const STATE = '{{STATE}}'</script>
+			<script src="{{ url_for('static', filename='gconnect.js') }}"></script>
+			{% else %}
+			<a id = "signoutButton" class="center ui" href={{url_for('gdisconnect')}}>disconnect</a>
+			{% endif %}
+		</div>
+		<!--end Google login-->
+		{% with messages = get_flashed_messages() %}
+		 	{% if messages %}
+		 	<ul>
+		 		{% for message in messages %}
+		 	 		<li><strong>{{message}}</strong></li>
+		 		{% endfor %}
+		 	</ul>
+		 	{% endif %}
+		{% endwith %}
+		</nav>
+		<table>
+			<tbody>
+				<tr>
+					<th>
+						<h1 class="heading">{{item.title}}</h1>
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<p class="text">Description: {{item.description}}</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="add"class="center">
+			<div>
+				{% if login_session['user_id'] == item.user_id %}
+				<a href={{url_for('editItem',title=item.title,category=category)}}>edit Item</a>
+				<a href={{url_for('deleteItem',title=item.title,category=category)}}>delete Item</a>
+				{% endif %}
+				<a href={{url_for('showHomePage')}}>back</a>
+			</div>
+		</div>
+	</body>
+</html>
