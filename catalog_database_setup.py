@@ -62,6 +62,6 @@ class Item(Base):
 
 # End class
 # insert at end of file
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgres://localhost')
 
 Base.metadata.create_all(engine)
