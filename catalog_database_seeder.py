@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from catalog_database_setup import Category, Item, Base
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql+psycopg://catalog:supersecretpassword@/catalog')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
