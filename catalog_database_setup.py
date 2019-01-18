@@ -62,6 +62,6 @@ class Item(Base):
 
 # End class
 # insert at end of file
-engine = create_engine('postgresql+psycopg://catalog:supersecretpassword@/catalog')
+engine = create_engine('postgresql://grader:supersecretpassword@localhost/grader')
 
 Base.metadata.create_all(engine)
