@@ -16,10 +16,10 @@ import requests
 
 app = Flask(__name__)
 
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read()
+CLIENT_ID = json.loads(open('/var/www/item-catalog-project/client_secrets.json', 'r').read()
                        )['web']['client_id']
 
-engine = create_engine('postgresql://grader:supersecretpassword@localhost/grader/catalog?check_same_thread=False')
+engine = create_engine('postgresql://grader:supersecretpassword@localhost/grader')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -109,7 +109,7 @@ def gconnect():
 
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/var/www/item-catalog-project/client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
